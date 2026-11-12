@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07131f">
+<meta name="description" content="An immersive 3D educational tour of an Animal Cell Culture Laboratory at Dr. B. R. Ambedkar NIT Jalandhar.">
+<title>Animal Cell Culture Laboratory | NIT Jalandhar — Immersive Research Tour</title>
+<style>
+:root{--bg:#07131f;--panel:rgba(7,20,34,.94);--panel2:rgba(10,29,47,.91);--line:rgba(106,211,224,.28);--cyan:#75f1ee;--blue:#79baff;--gold:#efcf8c;--mint:#b1f5d7;--text:#edf7fa;--muted:#9bb5c5;--shadow:0 18px 60px rgba(0,0,0,.38)}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}button{font:inherit}#world{position:fixed;inset:0;width:100%;height:100%;display:block;outline:none;touch-action:none}
+#vignette{pointer-events:none;position:fixed;inset:0;background:radial-gradient(ellipse at 52% 44%,transparent 32%,rgba(1,7,13,.42) 100%);z-index:1}
+#topbar{position:fixed;z-index:6;top:0;left:0;right:0;padding:13px 18px;display:flex;align-items:center;gap:14px;background:linear-gradient(180deg,rgba(3,12,21,.92),rgba(3,12,21,.45),transparent);pointer-events:none}
+.brandmark{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;border:1px solid rgba(117,241,238,.55);color:var(--cyan);font-size:13px;font-weight:800;letter-spacing:.08em;background:linear-gradient(145deg,rgba(117,241,238,.17),rgba(121,186,255,.06));box-shadow:0 0 26px rgba(117,241,238,.12);flex:none}
+.brandcopy{min-width:0}.brandcopy strong{display:block;font-size:12px;letter-spacing:.13em;text-transform:uppercase}.brandcopy span{display:block;color:#a9c5d2;font-size:11px;margin-top:3px;letter-spacing:.04em}.topright{margin-left:auto;display:flex;gap:8px;pointer-events:auto;align-items:center}.topbtn,.smallbtn{border:1px solid var(--line);background:rgba(8,25,40,.76);color:var(--text);border-radius:999px;padding:8px 12px;font-size:11px;letter-spacing:.04em;cursor:pointer;backdrop-filter:blur(12px);transition:.2s}.topbtn:hover,.smallbtn:hover{border-color:var(--cyan);background:rgba(33,83,94,.72)}
+#roomnav{position:fixed;z-index:5;left:16px;top:92px;display:flex;flex-direction:column;gap:7px;width:194px;max-height:calc(100vh - 230px);overflow:auto;padding:10px;border:1px solid var(--line);background:rgba(5,18,31,.78);backdrop-filter:blur(14px);border-radius:17px;box-shadow:var(--shadow)}
+.navheading{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#83a9b9;padding:4px 7px 8px}.navitem{border:1px solid transparent;background:transparent;color:#c7dce4;text-align:left;border-radius:10px;padding:9px 9px;display:flex;align-items:center;gap:9px;font-size:11px;cursor:pointer;transition:.2s}.navitem .ico{width:25px;height:25px;border-radius:8px;display:grid;place-items:center;background:rgba(115,187,206,.1);font-size:13px;flex:none}.navitem:hover{background:rgba(101,177,193,.11);border-color:rgba(117,241,238,.25)}.navitem.active{background:linear-gradient(100deg,rgba(78,191,192,.2),rgba(76,130,176,.12));border-color:rgba(117,241,238,.45);color:#fff}.navitem.active .ico{background:rgba(117,241,238,.2);color:var(--cyan)}
+#bottom{position:fixed;z-index:5;left:230px;right:18px;bottom:16px;display:flex;align-items:end;gap:12px;pointer-events:none}.bottomcard{pointer-events:auto;background:rgba(5,18,31,.82);border:1px solid var(--line);border-radius:15px;padding:11px 14px;backdrop-filter:blur(14px);box-shadow:var(--shadow)}#hint{max-width:320px;margin-right:auto}.eyebrow{font-size:9px;color:var(--cyan);letter-spacing:.19em;text-transform:uppercase}.hinttitle{font-size:13px;font-weight:650;margin:4px 0}.hinttext{font-size:10px;color:var(--muted);line-height:1.5}.controls{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.controlkey{font-size:9px;border:1px solid rgba(148,189,203,.3);border-radius:5px;padding:3px 6px;color:#c7dce4;background:rgba(120,160,180,.08)}
+#panel{position:fixed;z-index:8;right:16px;top:78px;bottom:94px;width:min(420px,calc(100vw - 32px));background:var(--panel);border:1px solid rgba(117,241,238,.3);border-radius:20px;box-shadow:var(--shadow);backdrop-filter:blur(18px);transform:translateX(calc(100% + 30px));transition:transform .38s cubic-bezier(.2,.8,.2,1);overflow:hidden;display:flex;flex-direction:column}#panel.open{transform:translateX(0)}.panelhead{padding:17px 18px 13px;border-bottom:1px solid rgba(117,241,238,.17);display:flex;gap:12px;align-items:flex-start}.panelheadcopy{min-width:0}.paneltag{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan)}.panelhead h2{font-size:20px;line-height:1.16;margin:6px 0 0;font-weight:650}.close{margin-left:auto;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);width:30px;height:30px;border-radius:50%;cursor:pointer;flex:none}.panelbody{padding:15px 18px 22px;overflow:auto}.panelbody p{font-size:12px;line-height:1.65;color:#c1d4dc;margin:0 0 13px}.panelbody h3{color:var(--mint);font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin:18px 0 8px}.panelbody ul{margin:0;padding-left:17px;color:#bed0d9}.panelbody li{font-size:11px;line-height:1.55;margin:5px 0}.panelimage{width:100%;max-height:190px;object-fit:cover;border-radius:12px;border:1px solid rgba(117,241,238,.2);background:#10283a;display:block;margin:8px 0 8px}.imgcredit{font-size:9px;color:#86a2b1;line-height:1.4;margin:0 0 12px}.imgcredit a{color:#9fdddf}.photogrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.photogrid figure{margin:0;min-width:0}.photogrid img{width:100%;height:92px;object-fit:cover;border-radius:9px;border:1px solid rgba(117,241,238,.18)}.photogrid figcaption{font-size:9px;color:#9fb6c1;margin-top:4px;line-height:1.35}
+#intro{position:fixed;z-index:10;inset:0;display:grid;place-items:center;padding:22px;background:linear-gradient(120deg,rgba(3,11,18,.9),rgba(3,14,24,.62)),url('https://niperahm.ac.in/wp-content/uploads/2026/10/Cell-culture-room-1-1-scaled.jpg') center/cover no-repeat;transition:opacity .65s,visibility .65s}#intro.hidden{opacity:0;visibility:hidden;pointer-events:none}.introcard{width:min(940px,100%);display:grid;grid-template-columns:1.14fr .86fr;border:1px solid rgba(117,241,238,.32);border-radius:25px;overflow:hidden;background:rgba(5,19,33,.86);box-shadow:0 28px 100px rgba(0,0,0,.55);backdrop-filter:blur(19px)}.introleft{padding:clamp(24px,5vw,52px)}.kicker{font-size:10px;letter-spacing:.24em;color:var(--cyan);text-transform:uppercase}.introleft h1{font-size:clamp(29px,5vw,54px);line-height:1.02;letter-spacing:-.04em;margin:16px 0 14px}.introleft h1 span{color:var(--cyan)}.introleft .sub{color:#b5cbd5;line-height:1.65;font-size:13px;max-width:580px}.hostline{display:flex;gap:12px;align-items:center;margin:24px 0 22px;padding:13px;border:1px solid rgba(117,241,238,.22);background:rgba(91,170,179,.08);border-radius:14px}.hostbadge{width:43px;height:43px;border-radius:13px;background:linear-gradient(145deg,#b4f7df,#6ab6d3);color:#08202e;display:grid;place-items:center;font-size:14px;font-weight:850;flex:none}.hostmeta b{display:block;font-size:12px;letter-spacing:.1em}.hostmeta span{display:block;font-size:10px;color:#a9c3ce;margin-top:3px}.hostmeta em{display:block;font-size:12px;color:#e4f5f1;margin-top:7px;font-style:normal}.introactions{display:flex;gap:9px;flex-wrap:wrap}.primary{border:1px solid #a0f8eb;background:linear-gradient(110deg,#9cf5e0,#7bd6ec);color:#07202b;border-radius:999px;padding:12px 19px;font-size:11px;letter-spacing:.06em;font-weight:800;cursor:pointer;box-shadow:0 8px 26px rgba(106,219,213,.2)}.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}.secondary{border:1px solid rgba(117,241,238,.36);background:rgba(117,241,238,.08);color:#e8f8f8;border-radius:999px;padding:12px 16px;font-size:11px;cursor:pointer}.introright{position:relative;min-height:350px;background:linear-gradient(0deg,rgba(5,16,27,.96),rgba(5,16,27,.05) 64%),url('https://niperahm.ac.in/wp-content/uploads/2026/10/Cell-Culture-room-3-1-scaled.jpg') center/cover}.introright:before{content:"";position:absolute;inset:16px;border:1px solid rgba(163,238,237,.4);border-radius:18px}.imagecaption{position:absolute;left:28px;right:28px;bottom:26px}.imagecaption b{font-size:12px;display:block}.imagecaption span{font-size:10px;color:#bdd1da;line-height:1.5;display:block;margin-top:5px}.disclaimer{font-size:9px;color:#819eac;margin-top:16px;line-height:1.5}
+#toast{position:fixed;z-index:9;left:50%;top:76px;transform:translate(-50%,-12px);opacity:0;pointer-events:none;background:rgba(4,17,29,.92);border:1px solid var(--line);padding:9px 14px;border-radius:999px;font-size:10px;color:#cce7ec;transition:.25s}#toast.show{opacity:1;transform:translate(-50%,0)}#loading{position:fixed;z-index:11;inset:0;background:#06111d;display:grid;place-items:center;transition:opacity .5s,visibility .5s}#loading.done{opacity:0;visibility:hidden}.loaderbox{text-align:center}.loaderorb{width:44px;height:44px;border:2px solid rgba(117,241,238,.2);border-top-color:var(--cyan);border-radius:50%;margin:0 auto 14px;animation:spin 1s linear infinite}.loaderbox span{font-size:10px;color:#a4beca;letter-spacing:.18em;text-transform:uppercase}@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:760px){#topbar{padding:10px 11px}.brandcopy strong{font-size:10px}.brandcopy span{font-size:9px}.topbtn{padding:7px 9px;font-size:9px}.brandmark{width:36px;height:36px}#roomnav{left:8px;top:68px;width:53px;padding:6px;gap:5px;max-height:calc(100vh - 160px)}.navheading{display:none}.navitem{justify-content:center;padding:7px 4px}.navitem .navlabel{display:none}.navitem .ico{width:31px;height:31px;font-size:14px}#bottom{left:70px;right:8px;bottom:8px;gap:6px;align-items:end}.bottomcard{padding:8px 9px;border-radius:12px}#hint{max-width:210px}.hinttitle{font-size:11px}.hinttext{font-size:9px}.controls{gap:4px}.controlkey{display:none}#panel{right:8px;top:65px;bottom:85px;width:min(390px,calc(100vw - 75px))}.introcard{grid-template-columns:1fr;max-width:560px}.introleft{padding:27px}.introright{min-height:160px;order:-1}.introright:before{inset:10px}.imagecaption{left:23px;bottom:17px}.imagecaption span{max-width:300px}.introleft h1{font-size:35px}.introleft .sub{font-size:12px}.hostline{margin:18px 0}.disclaimer{margin-top:12px}}
+@media(max-width:430px){.brandcopy span{max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.topright .topbtn:nth-child(2){display:none}.introleft{padding:22px}.introleft h1{font-size:31px}.hostline{padding:10px}.introactions button{flex:1}.panelhead h2{font-size:18px}}
+</style>
+</head>
+<body>
+<canvas id="world" aria-label="Interactive 3D virtual animal cell culture laboratory"></canvas><div id="vignette"></div>
+<div id="loading"><div class="loaderbox"><div class="loaderorb"></div><span>Preparing research environment</span></div></div>
+<header id="topbar">
+  <div class="brandmark">NITJ</div>
+  <div class="brandcopy"><strong>Animal Cell Culture Laboratory</strong><span>Department of Biotechnology · Dr. B. R. Ambedkar NIT Jalandhar</span></div>
+  <div class="topright"><button class="topbtn" id="welcomeAgain">Welcome</button><button class="topbtn" id="overviewBtn">Overview ↗</button><button class="topbtn" id="soundBtn" title="Speak the welcome message">🔊 Audio</button></div>
+</header>
+<nav id="roomnav" aria-label="Explore laboratory spaces">
+  <div class="navheading">Explore the facility</div>
+  <button class="navitem active" data-zone="overview"><span class="ico">⌂</span><span class="navlabel">Facility overview</span></button>
+  <button class="navitem" data-zone="culture"><span class="ico">🧫</span><span class="navlabel">Cell culture suite</span></button>
+  <button class="navitem" data-zone="instructor"><span class="ico">▤</span><span class="navlabel">Instructor chamber</span></button>
+  <button class="navitem" data-zone="students"><span class="ico">⌘</span><span class="navlabel">Research students</span></button>
+  <button class="navitem" data-zone="seminar"><span class="ico">▣</span><span class="navlabel">Seminar hall</span></button>
+  <button class="navitem" data-zone="technician"><span class="ico">⚙</span><span class="navlabel">Lab technician chamber</span></button>
+  <button class="navitem" data-zone="locker"><span class="ico">▤</span><span class="navlabel">Researcher locker room</span></button>
+  <button class="navitem" data-zone="gallery"><span class="ico">▧</span><span class="navlabel">Photo references</span></button>
+</nav>
+<div id="bottom">
+  <div class="bottomcard" id="hint"><div class="eyebrow" id="hintkicker">Immersive research tour</div><div class="hinttitle" id="hinttitle">Explore a connected research facility</div><div class="hinttext" id="hinttext">Choose a space from the left, or drag the scene to look around. Select glowing objects to learn more.</div></div>
+  <div class="bottomcard controls"><span class="controlkey">DRAG · ROTATE</span><span class="controlkey">SCROLL · ZOOM</span><span class="controlkey">W A S D · MOVE</span><button class="smallbtn" id="helpBtn">How to explore</button></div>
+</div>
+<aside id="panel" aria-live="polite"><div class="panelhead"><div class="panelheadcopy"><div class="paneltag" id="paneltag">Facility guide</div><h2 id="paneltitle">Welcome to the laboratory</h2></div><button class="close" id="closePanel" aria-label="Close details">✕</button></div><div class="panelbody" id="panelbody"></div></aside>
+<div id="toast"></div>
+<audio id="femaleWelcomeAudio" src="welcome-female.mp3" preload="auto"></audio>
+<div id="intro">
+ <div class="introcard">
+  <section class="introleft">
+   <div class="kicker">Virtual research facility · NIT Jalandhar</div>
+   <h1>Explore the science<br>behind <span>living cells.</span></h1>
+   <p class="sub">Step inside an immersive Animal Cell Culture Laboratory. Follow a connected visitor route through the experimental suite, faculty and student chambers, technician support room, researcher lockers and seminar hall. Select the highlighted components to discover what each one does.</p>
+   <div class="hostline"><div class="hostbadge">AY</div><div class="hostmeta"><b>ANSHU YADAV</b><span>Research Fellow · female voice preferred</span><em>“Hey, welcome to our lab.”</em></div></div>
+   <div class="introactions"><button class="primary" id="enterBtn">Enter the laboratory&nbsp; →</button><button class="secondary" id="hearBtn">▶ Hear welcome</button></div>
+   <div class="disclaimer">Academic 3D concept for presentation. The connected room plan is illustrative, not an official NIT Jalandhar architectural layout. The welcome prefers a female English system voice and falls back to a bundled female narration if the visitor’s device does not provide one. External laboratory photographs are credited in the project.</div>
+  </section>
+  <section class="introright"><div class="imagecaption"><b>Inside a modern cell-culture environment</b><span>Reference photograph from NIPER Ahmedabad’s Animal Tissue Culture Facility. Used as an educational visual reference, not represented as an NITJ facility photograph.</span></div></section>
+ </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script>
+(()=>{
+'use strict';
+const $=s=>document.querySelector(s),V=THREE.Vector3;
+const imageRefs={
+ suite:{url:'https://niperahm.ac.in/wp-content/uploads/2026/10/Cell-culture-room-1-1-scaled.jpg',title:'Cell culture facility and instrument benches',credit:'NIPER Ahmedabad · Animal Tissue Culture Facility',source:'https://niperahm.ac.in/atc/'},
+ microscope:{url:'https://niperahm.ac.in/wp-content/uploads/2026/10/Cell-Culture-room-3-2-scaled.jpg',title:'Fluorescence microscope workstation',credit:'NIPER Ahmedabad · Cell Culture Room 3',source:'https://niperahm.ac.in/atc/'},
+ hood:{url:'https://niperahm.ac.in/wp-content/uploads/2026/10/Cell-Culture-room-3-1-scaled.jpg',title:'Researchers working at biosafety cabinets',credit:'NIPER Ahmedabad · Cell Culture Room 3',source:'https://niperahm.ac.in/atc/'},
+ lab:{url:'https://www.ncnp.go.jp/nin/guide/r_dna2/images/pht_tour_010.jpg',title:'iPS cell culture laboratory reference',credit:'National Center of Neurology and Psychiatry, Japan · Laboratory tour',source:'https://www.ncnp.go.jp/nin/guide/r_dna2/tour.html'},
+ meeting:{url:'https://stradallc.com/app/uploads/2022/10/B.Labs_Conference-Room-1024x768.jpg',title:'Glass-walled research collaboration room',credit:'Strada · FirstHand Labs project photography',source:'https://stradallc.com/projects/university-city-science-center-firsthand-labs/'}
+};
+const equipment=[
+{id:'culture',name:'Cell Culture Room',short:'Culture suite',desc:'Cells are grown in sterile flasks and dishes. Adherent cells attach to plastic and are detached with trypsin–EDTA for subculture; suspension cells float in medium. Routine work includes feeding, passaging, counting and checking morphology.',facts:['Typical conditions: 37 °C, 5 % CO₂, humidified air','Passage at approximately 70–90 % confluence','Mycoplasma testing and cell-line authentication are standard good practice'],refs:['Freshney R.I. (2016) Culture of Animal Cells, 7th ed., Wiley-Blackwell.','Hayflick L., Moorhead P.S. (1961) Exp. Cell Res. 25:585–621.','Geraghty R.J. et al. (2014) Br. J. Cancer 111:1021–1046.'],photo:'suite'},
+{id:'incubation',name:'CO₂ Incubator',short:'Incubation',desc:'Maintains cultures at body temperature in a CO₂-enriched, humid atmosphere. CO₂ dissolves in the medium and, together with sodium bicarbonate, helps hold pH near 7.2–7.4.',facts:['37 °C is a common set-point for mammalian cells','5 % CO₂ is a common set-point; requirements are cell-line dependent','A water tray supplies humidity; HEPA filtration or copper interiors can reduce contamination'],refs:['Freshney R.I. (2016) Culture of Animal Cells, 7th ed., Wiley-Blackwell.'],photo:'suite'},
+{id:'biosafety',name:'Class II Biosafety Cabinet',short:'Biosafety',desc:'Provides a clean work zone and helps protect the operator and environment. Inflow air passes the front grille, while HEPA-filtered air flows down over the work surface. It is a key engineering control against contamination and exposure.',facts:['HEPA filters remove at least 99.97 % of particles at 0.3 µm','Disinfect work surfaces before and after work according to the laboratory SOP','UV light is a supplement, not a substitute for chemical disinfection'],refs:['CDC/NIH (2020) Biosafety in Microbiological and Biomedical Laboratories (BMBL), 6th ed.','WHO (2020) Laboratory Biosafety Manual, 4th ed.'],photo:'hood'},
+{id:'microscopy',name:'Inverted Phase-Contrast Microscope',short:'Microscopy',desc:'The objectives sit below the stage so living cells can be observed directly in culture vessels. Phase contrast converts small differences in refractive index into visible contrast, allowing unstained cells to be viewed.',facts:['Used to assess confluence, morphology and possible contamination','Phase contrast was developed by Frits Zernike, Nobel Prize in Physics (1953)','Fluorescence modules can support live-cell imaging'],refs:['Zernike F. (1942) Physica 9:686–698.','Freshney R.I. (2016) Culture of Animal Cells, 7th ed., Wiley-Blackwell.'],photo:'microscope'},
+{id:'centrifuge',name:'Refrigerated Centrifuge',short:'Centrifugation',desc:'Spins samples so heavier particles sediment. In cell culture it can pellet cells for medium changes, counting or cryopreservation. Settings should be specified as relative centrifugal force (× g), not only rpm.',facts:['Mammalian cells are often pelleted at approximately 200–300 × g for 5 min; follow the validated protocol','Balance tubes opposite one another','Use sealed buckets or rotors when required by the risk assessment'],refs:['Freshney R.I. (2016) Culture of Animal Cells, 7th ed., Wiley-Blackwell.','Svedberg T., Rinde H. (1923) J. Am. Chem. Soc. 45:943–954.'],photo:'lab'},
+{id:'pcr',name:'Thermal Cycler (PCR)',short:'PCR analysis',desc:'Amplifies a selected DNA segment by repeated heating and cooling cycles. It can support cell-line genotyping and mycoplasma testing; RT-qPCR is used to measure gene expression.',facts:['Typical cycle stages: denaturation ~94–95 °C, annealing ~50–65 °C and extension ~72 °C','Uses a heat-stable DNA polymerase such as Taq','Keep pre-PCR and post-PCR workflows separated to reduce contamination'],refs:['Saiki R.K. et al. (1988) Science 239:487–491.','Mullis K.B., Faloona F.A. (1987) Methods Enzymol. 155:335–350.'],photo:'lab'},
+{id:'cryo',name:'Liquid-Nitrogen Dewar',short:'Cryopreservation',desc:'Stores cell stocks at ultra-low temperature, where biological activity is greatly reduced. Cells are commonly frozen in medium containing a cryoprotectant such as DMSO to limit ice-crystal damage.',facts:['Liquid-phase storage is approximately −196 °C; vapour-phase systems operate at different temperatures','Controlled cooling near −1 °C/min is a common starting protocol','Use cryogenic gloves, face protection and appropriate ventilation'],refs:['Mazur P. (1970) Science 168:939–949.','Freshney R.I. (2016) Culture of Animal Cells, 7th ed., Wiley-Blackwell.'],photo:'lab'},
+{id:'tissue',name:'Tissue Processing & Microtome',short:'Tissue processing',desc:'Prepares tissue samples and 3D cultures for microscopy. Histology workflows can include fixation, dehydration, clearing, paraffin embedding, thin sectioning with a microtome and staining such as H&E.',facts:['A common fixative is 10 % neutral-buffered formalin; handle according to institutional safety procedures','Sections are often cut at approximately 4–5 µm','Primary cells may be isolated by enzymatic digestion, for example with collagenase'],refs:['Suvarna S.K., Layton C., Bancroft J.D. (2019) Bancroft’s Theory and Practice of Histological Techniques, 8th ed., Elsevier.'],photo:'lab'},
+{id:'media',name:'Media Preparation Bench',short:'Media preparation',desc:'Culture media supply nutrients, vitamins, salts and buffering components. Basal media such as DMEM may be supplemented and filter-sterilised. Phenol red can provide a visual indication of pH change.',facts:['DMEM is derived from Eagle’s medium (Dulbecco & Freeman, 1959)','Heat-labile solutions are commonly sterilised through 0.22 µm filters','A typical serum supplement may be around 10 %, depending on the cell model','Label solutions with name, preparation date and responsible person'],refs:['Eagle H. (1955) Science 122:501–504.','Dulbecco R., Freeman G. (1959) Virology 8:396–397.','Freshney R.I. (2016) Culture of Animal Cells, 7th ed., Wiley-Blackwell.'],photo:'suite'},
+{id:'steril',name:'Autoclave',short:'Sterilisation',desc:'Uses saturated steam under pressure to destroy microorganisms, including heat-resistant spores. It is used for compatible glassware, instruments, solutions and decontamination of suitable waste.',facts:['A common cycle is 121 °C at approximately 15 psi for at least 15–20 min; load size and material affect cycle time','Use chemical indicators and periodic biological indicators to verify cycles','70 % ethanol is used for surface disinfection, not as a substitute for sterilisation'],refs:['Rutala W.A., Weber D.J., HICPAC (2008) Guideline for Disinfection and Sterilization in Healthcare Facilities, CDC.','CDC/NIH (2020) BMBL, 6th ed.'],photo:'lab'}
+];
+const zoneContent={
+ overview:{tag:'Facility overview',title:'A connected research environment',desc:'This concept facility uses a shared main spine and a cross-corridor to connect the experimental suite, instructor chamber, research-student chamber, lab technician chamber, researcher locker room and seminar hall. Entry and exit gates mark opposite ends of a clear visitor route.',facts:['Zone 01: Animal Cell Culture Suite for experimental work','Zone 02: Instructor Chamber for mentoring and experimental planning','Zone 03: Research Students Chamber for desk-based analysis and collaboration','Zone 04: Seminar & Discussion Hall for presentations and journal clubs','Zone 05: Lab Technician Chamber for equipment records and operational support','Zone 06: Researcher Locker Room for personal storage and preparation','Clickable hygiene, furniture, waste, access and circulation components provide their own information panels'],photo:'suite'},
+ culture:{tag:'Zone 01 · Experimental science',title:'Animal Cell Culture Suite',desc:'Zone 01 is the experimental core of the facility. Its instrument bays, wash stations, sample-preparation tables and labelled waste points are arranged around clear working aisles. Each major fixture and instrument is selectable, with a dedicated information panel explaining its purpose and place in the cell-culture workflow.',facts:['Sterile technique and contamination control are central to daily practice','Work areas are arranged into culture, incubation, observation, analysis and storage functions','Hand-wash basins and labelled waste stations support the hygiene workflow','Dedicated worktables provide space for preparation and documentation','Select any highlighted instrument, table, sink or waste point to learn about it'],photo:'suite'},
+ instructor:{tag:'Zone 02 · Faculty guidance',title:'Instructor Chamber',desc:'A dedicated consultation and supervision room for faculty and research mentors. The space supports project planning, experimental design reviews, progress meetings, literature discussion and one-to-one guidance.',facts:['Faculty consultation and research mentoring','Review of experimental plans, controls and documentation','Discussion of results, troubleshooting and next steps','A quiet setting for reading, writing and focused supervision'],photo:'meeting'},
+ students:{tag:'Zone 03 · Research in progress',title:'Research Students Chamber',desc:'A collaborative workspace for postgraduate and project students. Individual computer stations and shared benches support literature review, data analysis, lab-book maintenance, figure preparation and small-group problem solving.',facts:['Dedicated workstations for individual research tasks','Shared collaboration tables for peer discussion','Digital research, documentation and data interpretation','Organised storage for notebooks, protocols and shared resources'],photo:'microscope'},
+ seminar:{tag:'Zone 04 · Scientific exchange',title:'Seminar & Discussion Hall',desc:'A presentation and discussion space for research seminars, journal clubs, project reviews, guest lectures and collaborative problem-solving. The room is designed to encourage questions, evidence-based debate and clear communication of research outcomes.',facts:['Research seminars and invited talks','Journal club: critique methods, controls and conclusions','Project progress reviews and student presentations','Collaborative discussion and feedback sessions'],photo:'meeting'},
+ technician:{tag:'Zone 05 · Laboratory operations',title:'Lab Technician Chamber',desc:'A connected support room for the laboratory technician to coordinate routine readiness, equipment logs, consumable stock, room checks and handover of prepared materials. It is placed directly on the shared corridor so staff can reach the experimental suite without crossing work areas.',facts:['Maintain equipment-use and maintenance records','Coordinate approved consumables and stock replenishment','Prepare worklists and communicate room-readiness checks','Support sample and material handover using the laboratory SOP','Keep access to the chamber clear during laboratory operations'],photo:'lab'},
+ locker:{tag:'Zone 06 · Staff preparation',title:'Researcher Locker Room',desc:'A dedicated changing and personal-storage space for researchers before entering controlled work areas. The room includes individual lockers, a seating bench and a PPE storage point to help keep personal belongings separate from experimental work.',facts:['Store bags and personal items outside experimental work zones','Use assigned lockers and keep walkways clear','Organise laboratory coats and approved personal protective equipment','Follow the institution’s gowning, hand-hygiene and access procedures'],photo:'suite'},
+ gallery:{tag:'Visual library',title:'Real laboratory reference photographs',desc:'These institutional photographs provide visual references for the kind of equipment and workspaces represented in the 3D concept. They are not photographs of the NIT Jalandhar facility and are not presented as images of ANSHU YADAV.',facts:['Cell-culture suite and instrument benches','Fluorescence microscope workstation','Researchers working at biosafety cabinets','iPS cell-culture laboratory reference'],photo:'suite'}
+};
+// ---------- three.js scene ----------
+const canvas=$('#world');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.8));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x0a1928);scene.fog=new THREE.Fog(0x0a1928,75,150);
+const camera=new THREE.PerspectiveCamera(48,innerWidth/innerHeight,.1,260);
+scene.add(new THREE.HemisphereLight(0xe4f8ff,0x324354,1.22));
+const keyLight=new THREE.DirectionalLight(0xfff0d7,2.05);keyLight.position.set(-24,38,25);keyLight.castShadow=true;keyLight.shadow.mapSize.set(2048,2048);keyLight.shadow.camera.left=-65;keyLight.shadow.camera.right=65;keyLight.shadow.camera.top=65;keyLight.shadow.camera.bottom=-65;scene.add(keyLight);
+const coolLight=new THREE.PointLight(0x62d9ed,100,75,2);coolLight.position.set(0,17,8);scene.add(coolLight);
+const mat=(color,opts={})=>new THREE.MeshStandardMaterial({color,roughness:.53,metalness:.12,...opts});
+const mats={floor:mat(0x526978,{roughness:.86}),wall:mat(0xdce8ea,{roughness:.8}),trim:mat(0x243b4b,{metalness:.5}),glass:mat(0x82c4d0,{transparent:true,opacity:.19,roughness:.12,metalness:.15,side:THREE.DoubleSide}),cyan:mat(0x6be7e5,{emissive:0x1c8387,emissiveIntensity:.65,metalness:.42}),white:mat(0xe6edf0,{roughness:.34}),steel:mat(0x8495a1,{metalness:.7,roughness:.3}),dark:mat(0x1b2a35,{roughness:.45}),wood:mat(0x8b6749,{roughness:.66}),blue:mat(0x275f83,{roughness:.32}),screen:mat(0x102f42,{emissive:0x0b2839,emissiveIntensity:.9,roughness:.2}),gold:mat(0xd6b575,{metalness:.55,roughness:.28})};
+const world=new THREE.Group();scene.add(world);const hotspots=[],animators=[],clickTargets=[];
+function box(parent,w,h,d,material,x,y,z,opts={}){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material);m.position.set(x,y,z);m.castShadow=opts.castShadow!==false;m.receiveShadow=true;parent.add(m);return m}
+function cyl(parent,r1,r2,h,material,x,y,z,segments=24){const m=new THREE.Mesh(new THREE.CylinderGeometry(r1,r2,h,segments),material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m}
+function sphere(parent,r,material,x,y,z,scale){const m=new THREE.Mesh(new THREE.SphereGeometry(r,24,16),material);m.position.set(x,y,z);if(scale)m.scale.set(...scale);m.castShadow=true;parent.add(m);return m}
+function tube(parent,points,r,material){const curve=new THREE.CatmullRomCurve3(points.map(p=>new V(...p)));const m=new THREE.Mesh(new THREE.TubeGeometry(curve,Math.max(24,points.length*8),r,8,false),material);parent.add(m);return m}
+function textSprite(text,color='#baf5e9',w=6){const c=document.createElement('canvas');c.width=1024;c.height=192;const g=c.getContext('2d');g.fillStyle='rgba(5,18,31,.87)';g.fillRect(0,0,c.width,c.height);g.strokeStyle=color;g.lineWidth=7;g.strokeRect(4,4,c.width-8,c.height-8);g.fillStyle=color;g.font='700 65px Arial';g.textAlign='center';g.textBaseline='middle';g.fillText(text,512,97,940);const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;const s=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true,depthTest:false}));s.scale.set(w,w*.19,1);return s}
+function label(parent,text,x,y,z,w=6){const s=textSprite(text);s.position.set(x,y,z);s.scale.set(w,w*.2,1);parent.add(s);return s}
+function addFloor(x,z,w,d){const f=box(world,w,.35,d,mats.floor,x,-.19,z);f.receiveShadow=true;for(let i=-Math.floor(w/2)+1;i<Math.floor(w/2);i+=2)box(world,.018,.008,d-.6,mat(0x91a8b2,{transparent:true,opacity:.15}),x+i,.002,z,{castShadow:false});return f}
+function wall(parent,x,y,z,w,h,d,glass=false){return box(parent,w,h,d,glass?mats.glass:mats.wall,x,y,z,{castShadow:false})}
+function buildRoom(name,cx,cz,w,d,opts={}){
+ const g=new THREE.Group();g.position.set(cx,0,cz);world.add(g);
+ box(g,w,.35,d,opts.floor||mat(0xb8c8ce,{roughness:.86}),0,-.18,0);
+ const H=4.2,t=.28;
+ wall(g,0,H/2,-d/2,w,H,t,true);wall(g,-w/2,H/2,0,t,H,d,true);wall(g,w/2,H/2,0,t,H,d,true);
+ if(opts.frontDoor){wall(g,-w*.31,H/2,d/2,w*.38,H,t,true);wall(g,w*.31,H/2,d/2,w*.38,H,t,true);wall(g,0,H-.55,d/2,w*.24,1.1,t,true);}
+ else wall(g,0,H/2,d/2,w,H,t,true);
+ // architectural piers and light tracks
+ for(const x of [-w/2+.45,w/2-.45])box(g,.22,H,.28,mats.trim,x,H/2,-d/2,{castShadow:false});
+ box(g,w-.6,.07,.08,mats.cyan,0,H-.25,-d/2+.1,{castShadow:false});
+ const lightCount=Math.max(1,Math.ceil(w/17));for(let i=0;i<lightCount;i++){const x=-w/2+(i+1)*w/(lightCount+1);const l=new THREE.PointLight(0xe1fcff,15,24,2);l.position.set(x,3.55,0);g.add(l);box(g,2.2,.06,.32,mat(0xf6ffff,{emissive:0xb7f5ff,emissiveIntensity:.8}),x,4.02,0,{castShadow:false});}
+ const s=label(g,name,0,4.7,-d/2+.5,Math.min(w*.55,10));
+ return g;
+}
+function makeDesk(parent,x,z,w=4,d=1.8){box(parent,w,.18,d,mats.wood,x,.95,z);for(const sx of [-w/2+.18,w/2-.18])for(const sz of [-d/2+.18,d/2-.18])box(parent,.14,.95,.14,mats.trim,x+sx,.46,z+sz);}
+function addChair(parent,x,z,rotation=0){const c=new THREE.Group();c.position.set(x,0,z);c.rotation.y=rotation;parent.add(c);cyl(c,.42,.42,.16,mat(0x283d4c),0,.57,0);box(c,.76,.95,.12,mat(0x375365),0,1.03,-.34);cyl(c,.09,.12,.58,mats.steel,0,.28,0,12);for(let i=0;i<5;i++){const a=i*Math.PI*2/5;cyl(c,.045,.045,.48,mats.steel,Math.cos(a)*.3,.06,Math.sin(a)*.3,8).rotation.z=Math.cos(a)*.5;}return c;}
+function monitor(parent,x,y,z,glow=0x5de4e3){box(parent,1.35,.86,.09,mats.dark,x,y,z);box(parent,1.22,.71,.025,mat(0x0b2539,{emissive:glow,emissiveIntensity:.75,roughness:.25}),x,y,z+.058);box(parent,.09,.38,.12,mats.steel,x,y-.62,z);box(parent,.58,.08,.42,mats.steel,x,y-.82,z+.06);}
+function addHotspot(parent,x,y,z,info){const m=new THREE.Mesh(new THREE.SphereGeometry(1.05,16,12),new THREE.MeshBasicMaterial({color:0x72f6ed,transparent:true,opacity:.012,depthWrite:false}));m.position.set(x,y,z);m.userData.info=info;parent.add(m);hotspots.push(m);const ring=new THREE.Mesh(new THREE.TorusGeometry(.42,.035,8,36),new THREE.MeshBasicMaterial({color:0x7af5e8,transparent:true,opacity:.88}));ring.position.set(x,y+1.35,z);ring.rotation.x=Math.PI/2;parent.add(ring);animators.push(t=>{ring.rotation.z=t*.55;ring.scale.setScalar(1+.1*Math.sin(t*2.2+x))});}
+function addBench(parent,x,z){makeDesk(parent,x,z,5.4,2.2);for(let i=0;i<3;i++)box(parent,.45,.18,.5,mats.steel,x-1.7+i*1.7,1.15,z-.15);}
+// A detailed but lightweight instrument family; real photographs appear in the info panel.
+function instrument(parent,id,x,z){const g=new THREE.Group();g.position.set(x,1.05,z);parent.add(g);
+ if(id==='culture'){
+  for(let i=0;i<3;i++){const f=box(g,.72,.14,1.2,mat(0xd3e8ef,{transparent:true,opacity:.7}),-1.3+i*1.2,.15,0);f.rotation.z=-.06;const flask=new THREE.Mesh(new THREE.CapsuleGeometry(.2,.38,4,12),mat(0xd7eff5,{transparent:true,opacity:.72}));flask.position.set(-1.3+i*1.2,.48,.05);flask.rotation.z=Math.PI/2;g.add(flask);cyl(g,.13,.13,.12,mats.blue,-1.3+i*1.2,.72,.05);}
+  cyl(g,.42,.42,.12,mats.white,1.15,.18,0);cyl(g,.37,.37,.08,mats.cyan,1.15,.28,0);for(let i=0;i<4;i++)cyl(g,.035,.035,.75,mat(0xe8f6f8),-.5+i*.3,.65,-.4+i*.04,8).rotation.z=.2;
+ }else if(id==='incubation'){
+  box(g,2.6,2.8,1.7,mats.white,0,1.35,0);box(g,2.25,2.4,.07,mat(0x8eb4c5,{transparent:true,opacity:.6}),0,1.38,.88);box(g,.3,.4,.06,mats.dark,.9,2.27,.93);box(g,.18,.1,.03,mats.cyan,.9,2.29,.97);for(let i=0;i<4;i++)box(g,2.05,.045,1.35,mats.steel,0,.55+i*.48,0);
+ }else if(id==='biosafety'){
+  box(g,3.2,1.2,1.7,mats.white,0,.62,0);box(g,3.1,.12,1.6,mats.steel,0,1.28,0);box(g,3.1,1.9,.12,mats.white,0,2.17,-.77);box(g,.12,1.9,1.5,mats.white,-1.5,2.15,0);box(g,.12,1.9,1.5,mats.white,1.5,2.15,0);box(g,2.8,1.05,.06,mat(0x9ed7e4,{transparent:true,opacity:.5}),0,2.1,.76);box(g,2.5,.07,.9,mat(0x9ed7e4,{emissive:0x2e8f9b,emissiveIntensity:.5}),0,1.5,.1);for(let i=0;i<3;i++)cyl(g,.1,.1,.25,mats.white,-.8+i*.8,1.68,.12,12);
+ }else if(id==='microscopy'){
+  box(g,2.2,.2,1.9,mats.dark,0,.12,0);cyl(g,.28,.34,.7,mats.steel,-.3,.6,-.2);const arm=cyl(g,.12,.14,1.25,mats.dark,-.15,1.25,-.2,18);arm.rotation.z=-.25;const head=box(g,.85,.38,.6,mats.white,.2,1.92,-.25);head.rotation.z=-.22;for(let i=0;i<2;i++)cyl(g,.1,.1,.55,mats.dark,.28+i*.23,1.61,.07,12).rotation.x=-.28;box(g,.7,.12,.6,mats.steel,.35,.56,.1);box(g,.42,.08,.38,mats.cyan,.35,.66,.1);
+ }else if(id==='centrifuge'){
+  cyl(g,.95,.95,1.2,mats.white,0,.62,0,32);cyl(g,.92,.92,.15,mats.steel,0,1.3,0,32);const lid=cyl(g,.78,.78,.14,mats.blue,0,1.42,0,32);lid.rotation.x=.05;box(g,.48,.22,.08,mats.dark,.62,.92,.78);box(g,.34,.1,.04,mats.cyan,.62,.95,.83);
+ }else if(id==='pcr'){
+  box(g,2,.95,1.6,mats.white,0,.6,0);box(g,1.25,.1,1.05,mats.dark,0,1.13,.05);box(g,.72,.4,.05,mats.screen,.6,.72,.84);box(g,.58,.29,.02,mat(0x1e8792,{emissive:0x126d79,emissiveIntensity:.7}),.6,.72,.88);
+ }else if(id==='cryo'){
+  cyl(g,1,1.12,2.6,mats.steel,0,1.35,0,32);cyl(g,1.04,1.04,.22,mats.dark,0,2.72,0,32);cyl(g,.42,.42,.38,mats.blue,0,2.98,0,24);for(let i=0;i<4;i++)box(g,.09,.2,.09,mats.gold,-.65+i*.42,2.4,.92);
+ }else if(id==='tissue'){
+  box(g,2.2,.8,1.65,mats.white,0,.48,0);cyl(g,.62,.62,.18,mats.steel,-.65,1.03,.2,30);cyl(g,.5,.5,.15,mats.dark,-.65,1.14,.2,30);box(g,.48,.45,.6,mats.blue,.7,.95,-.18);cyl(g,.12,.12,.5,mats.steel,.8,1.38,-.2,12);
+ }else if(id==='media'){
+  box(g,2.5,.28,1.7,mats.white,0,.15,0);for(let i=0;i<5;i++){const x=-.95+i*.48;cyl(g,.18,.2,.68,mat(0xe5f2f4,{transparent:true,opacity:.68}),x,.62,0,18);cyl(g,.14,.14,.12,mats.blue,x,1.02,0,16);cyl(g,.035,.035,.42,mats.cyan,x,.4,.25,10);}
+ }else if(id==='steril'){
+  box(g,2.1,2.5,1.7,mats.white,0,1.22,0);box(g,1.38,1.7,.07,mats.steel,0,1.34,.88);cyl(g,.47,.47,.12,mats.dark,0,1.4,.94,28);cyl(g,.34,.34,.07,mats.cyan,0,1.4,1.02,28);box(g,.52,.28,.04,mats.screen,.65,2.07,.88);
+ }
+ g.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});return g;
+}
+// campus-like ground and arrival zone
+addFloor(0,7,100,100);box(world,30,.16,14,mat(0x263d4c),0,.02,-1);for(let i=0;i<9;i++){box(world,.15,.025,12,mat(0x7aabb5,{emissive:0x154c55,emissiveIntensity:.4}),-14+i*3,.12,-1,{castShadow:false});}
+// landscaping planters
+for(let i=0;i<16;i++){const x=-42+(i%8)*12,z=i<8?24: -42;box(world,4,.45,3,mat(0x324e4c),x,.2,z);cyl(world,.22,.25,1.6,mat(0x78533a),x,.95,z,12);sphere(world,1.25,mat(0x387e5b),x,2.05,z,[1,1.2,1]);}
+// Connected circulation network: a main visitor spine and a full cross-corridor
+// physically meet the open thresholds of every room, including the two service chambers.
+box(world,8.4,.16,68,mat(0x607e8c),0,.015,20);
+box(world,98,.16,6.8,mat(0x607e8c),0,.02,20);
+// Non-slip edge strips and low wayfinding lights make the route legible from the overview.
+for(let z=-12;z<54;z+=2.8){box(world,.10,.025,1.25,mats.cyan,0,.12,z,{castShadow:false});}
+for(const x of [-48.2,48.2])box(world,.10,.045,6.1,mats.cyan,x,.13,20,{castShadow:false});
+for(const z of [16.65,23.35])box(world,96,.045,.09,mats.cyan,0,.13,z,{castShadow:false});
+for(let z=-8;z<50;z+=9){box(world,5.2,.10,.42,mat(0xd8f6f2,{emissive:0x6bc8c7,emissiveIntensity:.55}),0,4.15,z,{castShadow:false});}
+// Room footprints all face the shared cross-corridor or main spine.
+const culture=buildRoom('ZONE 01 · ANIMAL CELL CULTURE SUITE',0,-18,44,25,{frontDoor:true,floor:mat(0xc2d1d5)});
+const instructor=buildRoom('ZONE 02 · INSTRUCTOR CHAMBER',-22,9,18,16,{frontDoor:true,floor:mat(0xd0d4d1)});
+const students=buildRoom('ZONE 03 · RESEARCH STUDENTS CHAMBER',22,9,20,16,{frontDoor:true,floor:mat(0xcbd5d7)});
+const seminar=buildRoom('ZONE 04 · SEMINAR & DISCUSSION HALL',0,34,34,20,{frontDoor:true,floor:mat(0x9eafb7)});
+const technician=buildRoom('ZONE 05 · LAB TECHNICIAN CHAMBER',-40,9,14,16,{frontDoor:true,floor:mat(0xc7d5d8)});
+const locker=buildRoom('ZONE 06 · RESEARCHER LOCKER ROOM',40,9,14,16,{frontDoor:true,floor:mat(0xc7d5d8)});
+// main lab central walkway and bench islands
+box(culture,5,.035,20,mat(0x8aa3ad),0,.03,0);
+const stationPos=[[-16,-7],[-8,-7],[0,-7],[8,-7],[16,-7],[-16,6],[-8,6],[0,6],[8,6],[16,6]];
+equipment.forEach((item,i)=>{const [x,z]=stationPos[i];addBench(culture,x,z);instrument(culture,item.id,x,z);const name=label(culture,(i+1).toString().padStart(2,'0')+'  '+item.short.toUpperCase(),x,3.55,z-1.55,4.4);name.material.depthTest=false;addHotspot(culture,x,1.85,z,{...item,tag:'Zone 01 · Scientific equipment'});addHotspot(culture,x,1.15,z+1.45,{tag:'Zone 01 · Workstation furniture',title:'Laboratory worktable '+(i+1),name:'Laboratory worktable '+(i+1),desc:'A durable work surface used to organise compatible equipment, culture vessels, consumables and documentation for the adjacent station. The bench is represented as a dedicated, selectable fixture in this virtual suite.',facts:['Keep the surface uncluttered and clean it using the approved laboratory procedure','Separate clean materials from used or contaminated items','Use the bench only for the activities assigned to its work zone'],refs:['Illustrative furniture component; follow the actual facility SOP for cleaning and use.'],photo:'suite'});});
+// wall-mounted evidence displays and light strips
+for(let i=0;i<3;i++){box(culture,4.5,1.65,.12,mats.dark,-14+i*14,2.45,-12.25);box(culture,4.25,1.4,.035,mat(0x102f44,{emissive:0x164c5d,emissiveIntensity:.4}),-14+i*14,2.45,-12.17);}
+// Instructor chamber office
+makeDesk(instructor,0,-2.5,6.8,2.4);monitor(instructor,0,2.1,-2.9,0x75dce7);addChair(instructor,0,-5.25,0);addChair(instructor,-3.2,-1,Math.PI/2);addChair(instructor,3.2,-1,-Math.PI/2);
+for(let i=0;i<3;i++){box(instructor,1.2,3.1,.65,mats.wood,-7.1+i*1.25,-0+1.56,-6.8);for(let j=0;j<4;j++)box(instructor,.95,.12,.58,[mat(0x4f7783),mat(0x9b7959),mat(0x607b55)][j%3],-7.1+i*1.25,0.65+j*.68,-6.43);}
+box(instructor,6,2.8,.18,mats.dark,0,2.25,-7.75);box(instructor,5.7,2.5,.06,mats.screen,0,2.25,-7.63);label(instructor,'RESEARCH PLANNING  ·  MENTORSHIP',0,2.2,-7.53,5.2);
+addHotspot(instructor,0,1.8,-2.5,{id:'mentor',name:'Instructor & mentor desk',desc:'A focused consultation space for faculty guidance, experimental planning, progress reviews and research mentoring.',facts:['Discuss research objectives and experimental design','Review controls, methods and laboratory records','Plan milestones, interpret results and troubleshoot'],refs:['Room function represented as an academic design concept.'],photo:'meeting'});
+// Research student chamber: two long rows of workstations
+for(let row=0;row<2;row++){const z=-2.4+row*6;makeDesk(students,0,z,15.8,2.1);for(let i=0;i<4;i++){const x=-5.9+i*3.9;monitor(students,x,2.0,z-.38,0x61d6d2);addChair(students,x,z+(row===0?1.9:-1.9),row===0?0:Math.PI);}}
+box(students,4.5,1.4,.18,mats.dark,0,2.75,-7.75);box(students,4.25,1.16,.05,mats.screen,0,2.75,-7.62);label(students,'DATA  ·  NOTES  ·  COLLABORATION',0,2.7,-7.51,4.2);
+addHotspot(students,0,1.65,0,{id:'student-zone',name:'Research student workstations',desc:'A dedicated student research workspace for computational work, literature review, analysis, documentation and collaborative learning.',facts:['Maintain electronic and physical laboratory notebooks','Review literature and analyse results at individual stations','Use shared space for peer learning and project collaboration'],refs:['Room function represented as an academic design concept.'],photo:'microscope'});
+// Seminar auditorium: shallow stepped rows, chairs, lectern and large screen
+for(let row=0;row<3;row++){const z=-4.7+row*4.5,y=.22+row*.22;box(seminar,25,.24,2.45,mat(0x708995),0,y,z);for(let i=0;i<7;i++){const x=-10.5+i*3.5;addChair(seminar,x,z+.3,0);box(seminar,2.25,.12,.5,mats.wood,x,y+.8,z-.85);}}
+box(seminar,12,5.1,.25,mats.dark,0,3,-9.25);box(seminar,11.6,4.7,.055,mat(0x0d3348,{emissive:0x15536b,emissiveIntensity:.8}),0,3,-9.08);label(seminar,'RESEARCH SEMINAR  /  JOURNAL CLUB',0,3,-8.98,9.5);
+makeDesk(seminar,0,7,3.2,1.5);addHotspot(seminar,0,2.1,-8.9,{id:'seminar-screen',name:'Seminar and discussion stage',desc:'A shared forum for presenting results, reviewing published work and discussing research ideas with peers and faculty.',facts:['Weekly journal clubs and critical paper discussion','Student presentations and project progress reviews','Guest lectures, research seminars and interdisciplinary exchange','Audience questions, feedback and follow-up action points'],refs:['Room function represented as an academic design concept.'],photo:'meeting'});
+// ---------- Hygiene, furniture, waste and support rooms ----------
+function addSink(parent,x,z,name){
+ const g=new THREE.Group();g.position.set(x,0,z);parent.add(g);
+ box(g,2.8,.16,1.45,mats.white,0,.98,0);box(g,2.42,.84,1.12,mats.white,0,.48,0);
+ box(g,1.48,.12,.84,mats.dark,0,1.075,.03);box(g,1.16,.07,.62,mat(0x31515c,{roughness:.2,metalness:.35}),0,1.13,.03);
+ cyl(g,.055,.055,.34,mats.steel,0,1.28,-.48,14);tube(g,[[0,1.43,-.48],[0,1.52,-.28],[0,1.48,-.02]],.045,mats.steel);
+ cyl(g,.035,.035,.32,mats.steel,0,1.22,.40,12);box(g,.36,.08,.15,mats.cyan,0,1.42,-.42);
+ label(g,name,0,2.0,-.56,2.6);
+ addHotspot(parent,x,1.85,z,{tag:'Zone 01 · Hygiene station',title:name,desc:'A hand-washing and utility basin placed close to the entry side of the experimental suite. It supports hand hygiene and routine sink-based cleaning tasks as defined by the laboratory’s local procedures. It is not a substitute for a biosafety cabinet or a dedicated decontamination process.',facts:['Use the sink for the tasks permitted by the facility SOP','Wash hands at the required points before leaving controlled work areas','Keep the basin, tap and surrounding counter clean and unobstructed','Do not dispose of hazardous chemicals or biological materials unless the approved waste procedure explicitly permits it'],refs:['WHO (2020), Laboratory Biosafety Manual, 4th edition.','Follow institutional hand-hygiene and waste-disposal SOPs.'],photo:'hood'});
+ return g;
+}
+function addWasteBin(parent,x,z,labelText,bodyColor=0x526c79){
+ const g=new THREE.Group();g.position.set(x,0,z);parent.add(g);
+ box(g,.94,1.28,.88,mat(bodyColor,{roughness:.62}),0,.66,0);box(g,1.02,.13,.96,mats.dark,0,1.36,0);
+ box(g,.36,.08,.28,mats.steel,0,.13,.51);box(g,.52,.055,.35,mats.gold,0,1.44,0);
+ label(g,labelText,0,1.84,-.48,2.2);
+ addHotspot(parent,x,1.15,z,{tag:'Zone 01 · Waste management',title:labelText,desc:'A clearly labelled waste receptacle positioned near the work zone to encourage immediate, correct segregation. The 3D model is a teaching aid: the actual waste category, container colour, liner and disposal route must follow the institution’s current biomedical-waste rules and laboratory SOP.',facts:['Identify the waste stream before disposal','Never mix general waste with biological, chemical or sharps waste','Do not overfill; close and replace the liner according to local procedure','Sharps require a dedicated puncture-resistant sharps container, not this general bin'],refs:['Follow the current institutional biomedical-waste management plan and applicable local regulations.'],photo:'lab'});
+ return g;
+}
+function addDoorPanels(parent,z,width,roomName,roomDescription){
+ const leafW=Math.min(2.15,Math.max(.92,width*.22));
+ for(const side of [-1,1]){
+  const leaf=box(parent,leafW,3.25,.10,mats.glass,side*Math.max(leafW*.83,width*.31),1.72,z);
+  box(parent,.055,3.1,.12,mats.cyan,leaf.position.x+side*leafW*.46,1.72,z+.035);
+  cyl(parent,.035,.035,.42,mats.steel,leaf.position.x-side*.22,1.65,z+.1,10);
+ }
+ addHotspot(world, parent.position.x,1.9,parent.position.z+z,{tag:'Facility access · Room entrance',title:roomName+' entrance',desc:roomDescription+' This threshold opens directly onto the shared circulation corridor, keeping the room connected to the facility without routing visitors through another work area.',facts:['Use the designated room entrance and follow posted access requirements','Keep the doorway and corridor clear','Close the door when required by room pressure, access or contamination-control procedures'],refs:['Illustrative door and circulation layout; follow local access and biosafety procedures.'],photo:'suite'});
+}
+function addGate(name,z,description){
+ const g=new THREE.Group();g.position.set(0,0,z);world.add(g);
+ box(g,.62,4.25,.68,mats.trim,-5.25,2.12,0);box(g,.62,4.25,.68,mats.trim,5.25,2.12,0);
+ box(g,11.15,.48,.72,mats.trim,0,4.18,0);box(g,10.65,.10,.12,mats.cyan,0,3.88,.38);
+ // Glazed leaves are shown parked open so the visitor route remains visually unobstructed.
+ box(g,1.65,3.35,.12,mats.glass,-3.55,1.78,.02);box(g,1.65,3.35,.12,mats.glass,3.55,1.78,.02);
+ box(g,1.72,.07,.15,mats.gold,-3.55,.12,.02);box(g,1.72,.07,.15,mats.gold,3.55,.12,.02);
+ label(g,name.toUpperCase()+' GATE',0,4.95,0,7.5);
+ box(g,7.6,.08,2.6,mat(0x29424e),0,.08,0);for(let i=-3;i<=3;i++)box(g,.045,.025,2.1,mats.cyan,i*1.0,.13,0,{castShadow:false});
+ addHotspot(world,0,2.0,z,{tag:'Facility circulation · Access control',title:name+' Gate',desc:description,facts:['Provides a clearly identified transition between the external approach and the laboratory circulation route','The gate is wide and visually open in this 3D concept to keep the route easy to understand','Visitors should follow the real institution’s access authorisation, sign-in and emergency-exit procedures'],refs:['Illustrative academic facility model; not a real security or fire-egress drawing.'],photo:'lab'});
+ return g;
+}
+// Hand-wash basins near the entrance of Zone 01.
+addSink(culture,-17.4,9.25,'Hand-wash basin · West');
+addSink(culture,17.4,9.25,'Hand-wash basin · East');
+// A shared sample-preparation worktable and surrounding lab waste points.
+makeDesk(culture,0,9.35,5.8,1.7);
+box(culture,5.55,.055,1.52,mats.steel,0,1.06,9.35);
+label(culture,'SAMPLE PREPARATION TABLE',0,2.2,8.35,4.8);
+addHotspot(culture,0,1.65,9.35,{tag:'Zone 01 · Laboratory furniture',title:'Sample-preparation worktable',desc:'A shared, wipeable preparation surface for arranging labelled materials and carrying out compatible low-risk setup tasks before or after work at a designated instrument station. The table is kept separate from the main walking aisle.',facts:['Organise materials before starting a task','Keep clean and used materials physically separated','Disinfect the surface using the approved procedure','Do not use the table as a substitute for a certified biosafety cabinet'],refs:['Freshney R.I. (2016), Culture of Animal Cells, 7th edition.','Use the laboratory-specific cleaning and work-zone SOP.'],photo:'suite'});
+addWasteBin(culture,-20,-2,'BIO-WASTE');addWasteBin(culture,20,-2,'GENERAL WASTE',0x667b64);
+addWasteBin(culture,-20,7.3,'USED CONSUMABLES',0x6c657c);addWasteBin(culture,20,7.3,'GENERAL WASTE',0x667b64);
+// The technician chamber is a connected support room, not an isolated office.
+makeDesk(technician,0,-2.4,8.6,2.15);monitor(technician,0,2.0,-2.95,0x75dce7);addChair(technician,0,0.2,Math.PI);
+for(let i=0;i<4;i++){box(technician,1.55,2.6,.72,mats.white,-5.2+i*3.45,1.32,-6.55);box(technician,1.32,.08,.08,mats.cyan,-5.2+i*3.45,2.1,-6.13);}
+box(technician,4.6,.14,1.1,mats.steel,0,.98,3.7);box(technician,4.2,.82,.08,mats.dark,0,1.45,3.18);
+label(technician,'EQUIPMENT LOGS  ·  SUPPLIES',0,3.35,-7.35,5.6);
+addHotspot(technician,0,1.75,-2.3,{tag:'Zone 05 · Technical support',title:'Laboratory technician workstation',desc:'The technician’s desk is the coordination point for equipment records, approved consumables, room-readiness checks and communication with research users. It supports safe and organised day-to-day operation of the facility.',facts:['Maintain instrument-use and maintenance logs','Coordinate approved consumables and stock levels','Record room-readiness checks and communicate issues','Refer technical work and equipment release to the relevant SOP'],refs:['Illustrative staff support function; responsibilities depend on institutional policy.'],photo:'lab'});
+addHotspot(technician,0,1.45,3.65,{tag:'Zone 05 · Stores and preparation',title:'Technician supplies and records counter',desc:'A dedicated counter for staging approved supplies, maintaining inventory sheets and preparing routine work packs. Materials remain labelled and are stored according to compatibility and the facility’s storage procedure.',facts:['Use labels and stock records to maintain traceability','Keep incompatible materials separated','Do not stage unlabelled or unidentified substances','Keep the counter clear for handover and inspection'],refs:['Follow the laboratory inventory, chemical-safety and biosafety procedures.'],photo:'suite'});
+// Researcher locker room with individual lockers, a changing bench and a PPE point.
+for(let i=0;i<6;i++){
+ const x=-5.35+i*2.14;
+ box(locker,1.72,2.85,.88,mats.trim,x,1.43,-6.45);
+ box(locker,1.53,2.63,.065,mat(0x8ca6b1),x,1.43,-5.98);
+ box(locker,.10,.18,.075,mats.gold,x+.48,1.38,-5.91);
+ for(let j=0;j<4;j++)box(locker,.55,.035,.025,mats.dark,x,2.35+j*.12,-5.90,{castShadow:false});
+ label(locker,'R'+String(i+1).padStart(2,'0'),x,2.9,-5.88,1.0);
+}
+makeDesk(locker,0,1.1,7.4,1.35);box(locker,2.4,.1,.75,mats.steel,0,1.07,1.1);
+for(let i=0;i<3;i++){box(locker,.9,1.5,.65,mats.white,4.6,0.85,-1.6+i*2);box(locker,.72,.07,.06,mats.cyan,4.6,1.28,-1.25+i*2);}
+label(locker,'PERSONAL STORAGE  ·  PPE',0,3.55,-7.35,5.1);
+addHotspot(locker,0,1.85,-6.2,{tag:'Zone 06 · Researcher storage',title:'Individual researcher lockers',desc:'Lockers provide secure personal storage outside the experimental work zones. Keeping bags and personal belongings here helps maintain clear benches and separates personal items from laboratory materials.',facts:['Store personal belongings before entering controlled work areas','Keep lockers closed and assigned to authorised users','Do not store chemicals, biological samples or laboratory waste in personal lockers','Keep locker-room aisles unobstructed'],refs:['Follow institutional personal-storage and gowning requirements.'],photo:'suite'});
+addHotspot(locker,0,1.5,1.1,{tag:'Zone 06 · Changing area',title:'Researcher changing bench',desc:'A seating bench provides a place to organise personal items and prepare for the laboratory’s approved gowning sequence. The changing arrangement is conceptual and must be adapted to the actual facility’s PPE and access rules.',facts:['Keep street clothing and laboratory clothing appropriately separated','Use the institution’s designated gowning sequence','Do not place personal belongings on experimental work surfaces'],refs:['Follow institutional gowning and PPE procedures.'],photo:'lab'});
+addHotspot(locker,4.6,1.55,0.4,{tag:'Zone 06 · Protective equipment',title:'PPE and laboratory-coat station',desc:'A designated storage point for approved protective equipment and laboratory coats. PPE selection depends on the task-specific risk assessment and local biosafety procedures.',facts:['Select PPE according to the activity and risk assessment','Inspect reusable PPE before use','Store clean PPE separately from used items','Dispose of single-use PPE through the correct waste stream'],refs:['WHO (2020), Laboratory Biosafety Manual, 4th edition.'],photo:'hood'});
+// Room-entry panels, each with its own click-for-information hotspot.
+addDoorPanels(culture,12.5,10.56,'Animal Cell Culture Suite','The experimental suite contains the ten scientific stations, hand-wash basins, sample-preparation table and labelled waste points.');
+addDoorPanels(instructor,8,4.32,'Instructor Chamber','The instructor chamber supports mentoring, experimental planning and research review.');
+addDoorPanels(students,8,4.8,'Research Students Chamber','The student chamber supports literature review, data analysis, laboratory records and collaborative work.');
+addDoorPanels(seminar,10,8.16,'Seminar & Discussion Hall','The seminar hall supports journal clubs, research presentations and discussion.');
+addDoorPanels(technician,8,3.36,'Lab Technician Chamber','The technician chamber supports inventory, equipment records and laboratory readiness.');
+addDoorPanels(locker,8,3.36,'Researcher Locker Room','The locker room provides personal storage and a dedicated preparation area before laboratory access.');
+// Main visitor gates are at opposite ends of the shared circulation spine.
+addGate('Entry',-12.5,'The entry gate marks the controlled visitor arrival point. From here, a straight, accessible circulation spine reaches the culture suite and branches to all support, research and discussion rooms.');
+addGate('Exit',52.7,'The exit gate marks the far end of the visitor route, beyond the seminar hall. It is modelled as a clearly identified exit point; real emergency egress must follow the approved building plan and fire-safety signage.');
+// Selectable corridor junctions make the connection logic discoverable.
+addHotspot(world,0,1.45,20,{tag:'Facility circulation · Main junction',title:'Central connecting corridor',desc:'The main corridor spine and cross-corridor form the shared circulation network. The junction connects the cell-culture suite, instructor chamber, research-student chamber, lab technician chamber, researcher locker room and seminar hall.',facts:['Entry and exit gates sit at opposite ends of the visitor route','The cross-corridor meets each chamber entrance directly','Visitors can reach service and research spaces without crossing through the experimental benches','Keep circulation routes clear and follow posted access restrictions'],refs:['Illustrative circulation concept, not an architectural or fire-egress drawing.'],photo:'meeting'});
+addHotspot(world,4.45,1.35,34,{tag:'Facility circulation · Wayfinding',title:'Seminar and research wing connector',desc:'This section of the main spine gives direct access to the seminar hall and the cross-corridor junction. Directional labels help visitors understand the facility’s connected layout.',facts:['Follow the wayfinding signs between zones','Keep the route free of temporary storage','Use the designated exit route in an actual emergency'],refs:['Illustrative academic facility layout.'],photo:'meeting'});
+
+// glass door frames and corridor wayfinding signs
+for(const [x,z,w,t] of [[0,-5.35,6,.22],[-22,1,5,.22],[22,1,5,.22],[0,23.5,7,.22]]){box(world,w,.16,t,mats.steel,x,3.8,z);box(world,.12,3.7,t,mats.cyan,x-w/2,1.95,z);box(world,.12,3.7,t,mats.cyan,x+w/2,1.95,z);}
+// Holographic cell sculpture at the hub
+const cell=new THREE.Group();cell.position.set(0,2.35,6);world.add(cell);
+const membrane=new THREE.Mesh(new THREE.SphereGeometry(2.8,40,28),mat(0x76dbe5,{transparent:true,opacity:.23,roughness:.12,metalness:.18,side:THREE.DoubleSide}));cell.add(membrane);
+const inner=new THREE.Mesh(new THREE.SphereGeometry(2.12,32,24),mat(0x1c7890,{transparent:true,opacity:.17,side:THREE.DoubleSide}));cell.add(inner);
+const nucleus=sphere(cell,.88,mat(0x9b85db,{emissive:0x3d1c74,emissiveIntensity:.7}),-.3,.3,.15,[1,1.05,.9]);
+for(let i=0;i<12;i++){const a=i*Math.PI*2/12;const o=sphere(cell,.22,[mat(0x7bdfc0),mat(0xe3b978),mat(0x80b9f0)][i%3],Math.cos(a)*1.55,Math.sin(a*1.7)*1.2,Math.sin(a)*1.35);o.scale.set(1.2,.7,.8);}
+const membraneRing=new THREE.Mesh(new THREE.TorusGeometry(3.05,.035,8,90),new THREE.MeshBasicMaterial({color:0x73e9e3}));membraneRing.rotation.x=.7;cell.add(membraneRing);
+animators.push(t=>{cell.rotation.y=t*.22;membrane.rotation.y=t*.35;membraneRing.rotation.z=t*.35;nucleus.scale.setScalar(1+.025*Math.sin(t*2));});
+label(world,'CELL BIOLOGY  ·  OBSERVE  ·  UNDERSTAND',0,6.3,9,12);
+// DNA helix sculpture beside the foyer
+const dna=new THREE.Group();dna.position.set(6.1,0,7);world.add(dna);
+for(let i=0;i<65;i++){const t=i*.16,y=.4+i*.105,a=t*1.15;const x=Math.cos(a)*.65,z=Math.sin(a)*.65;const x2=-x,z2=-z;sphere(dna,.075,mat(0x69dfe1,{emissive:0x18767b,emissiveIntensity:.4}),x,y,z);sphere(dna,.075,mat(0x93b8f4,{emissive:0x253c7e,emissiveIntensity:.4}),x2,y,z2);if(i%3===0){const rod=box(dna,.06,.05,Math.hypot(x-x2,z-z2),mats.gold,(x+x2)/2,y,(z+z2)/2);rod.rotation.y=-a;}}
+animators.push(t=>{dna.rotation.y=t*.18;});
+// decorative ceilingless light bars at hub
+for(let i=0;i<8;i++){const a=i*Math.PI/4;const bar=box(world,.08,.08,5,mats.cyan,Math.cos(a)*7,4.2,Math.sin(a)*7);bar.rotation.y=a;}
+// floating motes, restrained animated environment
+const moteGeo=new THREE.BufferGeometry(),moteCount=110,motePos=new Float32Array(moteCount*3);for(let i=0;i<moteCount;i++){motePos[i*3]=(Math.random()-.5)*82;motePos[i*3+1]=1+Math.random()*13;motePos[i*3+2]=(Math.random()-.5)*82;}moteGeo.setAttribute('position',new THREE.BufferAttribute(motePos,3));const motes=new THREE.Points(moteGeo,new THREE.PointsMaterial({color:0x9be9ed,size:.07,transparent:true,opacity:.48}));world.add(motes);
+animators.push(t=>{const a=moteGeo.attributes.position;for(let i=0;i<moteCount;i++){a.array[i*3+1]+=.002*Math.sin(t+i);if(a.array[i*3+1]>14)a.array[i*3+1]=.5;}a.needsUpdate=true;});
+// Selectable door/area markers
+const areaItems=[
+ {zone:'culture',x:0,z:-6.5,name:'Animal Cell Culture Suite'},
+ {zone:'instructor',x:-22,z:1.5,name:'Instructor Chamber'},
+ {zone:'students',x:22,z:1.5,name:'Research Students Chamber'},
+ {zone:'seminar',x:0,z:34,name:'Seminar Hall'},
+ {zone:'technician',x:-40,z:9,name:'Lab Technician Chamber'},
+ {zone:'locker',x:40,z:9,name:'Researcher Locker Room'}
+];areaItems.forEach(a=>{const marker=new THREE.Mesh(new THREE.SphereGeometry(.6,14,10),new THREE.MeshBasicMaterial({color:0x73f1e7,transparent:true,opacity:.02}));marker.position.set(a.x,1.8,a.z);marker.userData.zone=a.zone;marker.userData.name=a.name;world.add(marker);hotspots.push(marker);const ring=new THREE.Mesh(new THREE.TorusGeometry(.72,.035,8,30),new THREE.MeshBasicMaterial({color:0x82f2e8,transparent:true,opacity:.8}));ring.position.set(a.x,2.2,a.z);ring.rotation.x=Math.PI/2;world.add(ring);animators.push(t=>ring.scale.setScalar(1+.12*Math.sin(t*2+a.x)));});
+// camera / navigation
+let cameraState={target:new V(0,1.2,9),theta:.7,phi:1.05,radius:70},flight=null,drag=null,lastPointer=null;
+function placeCamera(){const s=Math.sin(cameraState.phi);camera.position.set(cameraState.target.x+cameraState.radius*s*Math.sin(cameraState.theta),cameraState.target.y+cameraState.radius*Math.cos(cameraState.phi),cameraState.target.z+cameraState.radius*s*Math.cos(cameraState.theta));camera.lookAt(cameraState.target);}
+placeCamera();
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+function flyTo(target,theta,phi,radius,duration=1.7){flight={from:{target:cameraState.target.clone(),theta:cameraState.theta,phi:cameraState.phi,radius:cameraState.radius},to:{target:new V(...target),theta,phi,radius},start:performance.now(),duration:duration*1000};}
+const views={overview:{target:[0,1,18],theta:.57,phi:.9,r:82},culture:{target:[0,1.2,-18],theta:.06,phi:.8,r:39},instructor:{target:[-22,1.2,9],theta:.08,phi:.87,r:24},students:{target:[22,1.2,9],theta:.08,phi:.87,r:25},seminar:{target:[0,1.5,34],theta:.02,phi:.83,r:34},technician:{target:[-40,1.2,9],theta:.08,phi:.87,r:22},locker:{target:[40,1.2,9],theta:.08,phi:.87,r:22},gallery:{target:[0,1.2,-18],theta:.15,phi:.93,r:47}};
+function navigate(zone){const v=views[zone]||views.overview;flyTo(v.target,v.theta,v.phi,v.r,1.9);$('.navitem.active')?.classList.remove('active');document.querySelector(`.navitem[data-zone="${zone}"]`)?.classList.add('active');const c=zoneContent[zone]||zoneContent.overview;setHint(c.tag,c.title,c.desc);if(zone==='gallery')showGallery();else if(zone==='overview')showInfo(zoneContent.overview);else showInfo(c);if(zone==='culture')toast('Zone 01 includes selectable instruments, benches, sinks, tables and waste stations.');}
+function setHint(k,t,d){$('#hintkicker').textContent=k;$('#hinttitle').textContent=t;$('#hinttext').textContent=d;}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function photoMarkup(key){const p=imageRefs[key]||imageRefs.suite;return `<img class="panelimage" src="${p.url}" alt="${esc(p.title)}" loading="lazy"><div class="imgcredit">${esc(p.title)} · ${esc(p.credit)} · <a href="${p.source}" target="_blank" rel="noopener">Source page</a></div>`;}
+function showInfo(info){$('#paneltag').textContent=info.tag||'Equipment guide';$('#paneltitle').textContent=info.title||info.name||'Research area';const facts=(info.facts||[]).map(x=>`<li>${esc(x)}</li>`).join('');const refs=(info.refs||[]).map(x=>`<li>${esc(x)}</li>`).join('');$('#panelbody').innerHTML=`<p>${esc(info.desc||'')}</p>${photoMarkup(info.photo||'suite')}<h3>What happens here</h3><ul>${facts}</ul>${refs?`<h3>References & further reading</h3><ul>${refs}</ul>`:''}`;$('#panel').classList.add('open');}
+function showEquipment(item){const title=item.title||item.name||'Facility component';showInfo({...item,tag:item.tag||'Interactive facility component',title});setHint(item.tag||'Component selected',title,'Read the component description, key functions and supporting references in the details panel.');}
+function showGallery(){const items=Object.entries(imageRefs);$('#paneltag').textContent='Photo library · External references';$('#paneltitle').textContent='Real laboratory photographs';$('#panelbody').innerHTML=`<p>Photographs from institutional facility pages, included as real-world visual references for the 3D educational concept. They are not photographs of the NIT Jalandhar laboratory.</p><div class="photogrid">${items.map(([k,p])=>`<figure><a href="${p.url}" target="_blank" rel="noopener"><img src="${p.url}" alt="${esc(p.title)}" loading="lazy"></a><figcaption>${esc(p.title)}<br><a href="${p.source}" target="_blank" rel="noopener" style="color:#9fdddf">${esc(p.credit)}</a></figcaption></figure>`).join('')}</div><h3>Image attribution</h3><ul><li>NIPER Ahmedabad · Animal Tissue Culture Facility</li><li>National Center of Neurology and Psychiatry · iPS Cell Culture Laboratory tour</li><li>Strada · FirstHand Labs conference room project</li></ul>`;$('#panel').classList.add('open');}
+function toast(text){const t=$('#toast');t.textContent=text;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),2800);}
+document.querySelectorAll('.navitem').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.zone)));
+$('#closePanel').addEventListener('click',()=>$('#panel').classList.remove('open'));
+$('#overviewBtn').addEventListener('click',()=>navigate('overview'));
+$('#helpBtn').addEventListener('click',()=>{showInfo({tag:'Visitor guide',title:'How to explore the 3D laboratory',desc:'Move through the connected facility using the room navigator. The central corridor links every room. Select any highlighted fixture, gate, workstation, basin, waste point or room entrance to read about it; drag to rotate and scroll to zoom.',facts:['Select a space from the left navigation to fly the camera to that room','Drag with your mouse or finger to rotate the view','Scroll or pinch to zoom in and out','Use W, A, S and D or the arrow keys to move the viewing target','Select any highlighted instrument, room entrance, basin, table, bin, locker, gate or corridor junction to open its information panel','Use the Overview button to return to the full facility view'],refs:['Tip: on smaller screens, the room navigation collapses to icon buttons.'],photo:'suite'});});
+// pointer interaction and camera orbit
+const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
+canvas.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,dx:0,dy:0,moved:0,id:e.pointerId};canvas.setPointerCapture(e.pointerId);});
+canvas.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.moved+=Math.abs(dx)+Math.abs(dy);drag.x=e.clientX;drag.y=e.clientY;if(!flight&&drag.moved>2){cameraState.theta-=dx*.0055;cameraState.phi=Math.max(.22,Math.min(1.47,cameraState.phi-dy*.0045));}});
+canvas.addEventListener('pointerup',e=>{if(drag&&drag.moved<7){pointer.set(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(hotspots,false);if(hits.length){const info=hits[0].object.userData.info;if(info)showEquipment(info);else if(hits[0].object.userData.zone)navigate(hits[0].object.userData.zone);}}drag=null;});
+canvas.addEventListener('wheel',e=>{if(!flight){cameraState.radius=Math.max(10,Math.min(95,cameraState.radius*(1+e.deltaY*.001)));}},{passive:true});
+window.addEventListener('keydown',e=>{if($('#intro').classList.contains('hidden')&&!flight){const step=1.35,forward=new V(-Math.sin(cameraState.theta),0,-Math.cos(cameraState.theta)),right=new V(Math.cos(cameraState.theta),0,-Math.sin(cameraState.theta));if(['w','ArrowUp'].includes(e.key))cameraState.target.addScaledVector(forward,step);if(['s','ArrowDown'].includes(e.key))cameraState.target.addScaledVector(forward,-step);if(['a','ArrowLeft'].includes(e.key))cameraState.target.addScaledVector(right,-step);if(['d','ArrowRight'].includes(e.key))cameraState.target.addScaledVector(right,step);}});
+// Browser speech synthesis: prefer a recognisably female English voice when one is installed.
+// The available voices are supplied by the visitor's browser/operating system, so availability varies by device.
+const welcomeText="Hey, welcome to our lab. I'm Anshu Yadav, research fellow. Today, I'll take you through our Animal Cell Culture Laboratory. Explore the experimental science suite, meet the research and support teams, and discover how every part of the laboratory works together. Let's begin.";
+const femaleVoicePattern=/female|woman|zira|samantha|aria|jenny|sonia|libby|serena|karen|moira|tessa|susan|heera|neerja|aditi|raveena|lekha|priya|ava|emma|michelle|natasha|catherine|ana/i;
+function findFemaleEnglishVoice(){const voices=window.speechSynthesis.getVoices();const english=voices.filter(v=>/^en[-_]/i.test(v.lang));const female=english.filter(v=>femaleVoicePattern.test(v.name));return female.find(v=>/^en[-_]IN/i.test(v.lang))||female.find(v=>/^en[-_]GB/i.test(v.lang))||female.find(v=>/^en[-_]US/i.test(v.lang))||female[0]||null;}
+function makeWelcomeUtterance(){const u=new SpeechSynthesisUtterance(welcomeText);const selected=findFemaleEnglishVoice();u.rate=.94;u.pitch=selected?1.08:1.18;u.volume=1;if(selected){u.voice=selected;u.lang=selected.lang;}else{u.lang='en-IN';}return {utterance:u,selected};}
+function speakWelcome(){
+ const selected=('speechSynthesis'in window)?findFemaleEnglishVoice():null;
+ if(selected){window.speechSynthesis.cancel();const {utterance}=makeWelcomeUtterance();window.speechSynthesis.speak(utterance);toast(`Female voice selected: ${selected.name}`);return;}
+ // Guaranteed female-voice fallback bundled with this project for browsers without a suitable system voice.
+ const audio=$('#femaleWelcomeAudio');if(audio){if('speechSynthesis'in window)window.speechSynthesis.cancel();audio.pause();audio.currentTime=0;const playback=audio.play();if(playback&&playback.catch)playback.catch(()=>toast('Audio playback was blocked. Press Hear welcome again to allow playback.'));toast('Playing the bundled female welcome narration.');return;}
+ toast('No female narration is available in this browser.');
+}
+if('speechSynthesis'in window){window.speechSynthesis.onvoiceschanged=()=>{findFemaleEnglishVoice();};}
+$('#hearBtn').addEventListener('click',speakWelcome);$('#soundBtn').addEventListener('click',speakWelcome);
+$('#welcomeAgain').addEventListener('click',()=>{$('#intro').classList.remove('hidden');if('speechSynthesis'in window)window.speechSynthesis.cancel();});
+$('#enterBtn').addEventListener('click',()=>{speakWelcome();$('#intro').classList.add('hidden');navigate('overview');toast('Welcome inside. Choose a research space to begin.');});
+// render loop
+let start=performance.now();function animate(now){requestAnimationFrame(animate);const t=(now-start)/1000;if(flight){const k=Math.min(1,(now-flight.start)/flight.duration),e=ease(k);cameraState.target.lerpVectors(flight.from.target,flight.to.target,e);cameraState.theta=flight.from.theta+(flight.to.theta-flight.from.theta)*e;cameraState.phi=flight.from.phi+(flight.to.phi-flight.from.phi)*e;cameraState.radius=flight.from.radius+(flight.to.radius-flight.from.radius)*e;if(k>=1)flight=null;}placeCamera();animators.forEach(fn=>fn(t));renderer.render(scene,camera);}
+requestAnimationFrame(animate);
+function resize(){renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.8));camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}window.addEventListener('resize',resize);
+// initial camera and content
+showInfo(zoneContent.overview);setHint('Immersive research tour','Explore a connected research facility','Choose a space from the left, or drag the scene to look around. Select glowing objects to learn more.');
+setTimeout(()=>$('#loading').classList.add('done'),700);
+})();
+</script>
+</body>
+</html>
